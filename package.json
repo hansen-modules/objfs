@@ -18,6 +18,7 @@
   "homepage": "https://github.com/rafa1231518/oofs#readme",
   "private": true,
   "dependencies": {
+    "create-readdir-stream": "^1.0.0",
     "dive": "^0.5.0",
     "diveSync": "^0.3.0",
     "fs-extra": "^0.30.0",
@@ -27,7 +28,8 @@
     "path-is-absolute": "^1.0.0",
     "readl": "0.0.8",
     "readl-async": "0.0.3",
-    "rimraf": "^2.2.8"
+    "rimraf": "^2.2.8",
+    "xml2js": "^0.4.17"
   },
   "engines": {
     "node": ">=6.0.0"

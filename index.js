@@ -7,6 +7,8 @@ const diveSync = require("diveSync");
 const dive = require("dive");
 const readlSync = require("readl");
 const Readl = require('readl-async');
+const crs = require('create-readdir-stream');
+const xml2js = require('xml2js');
 
 const copy = require('./lib/copy');
 const copySync = require('./lib/copy-sync');
@@ -30,6 +32,14 @@ class File {
 
   get absolutePath() {
     return fs.realpathSync(this.path);
+  }
+
+  equals(file) {
+    return this.path === file.path;
+  }
+
+  deepEquals(file) {
+    return this.absolutePath === file.absolutePath;
   }
 
   // async fs exists
@@ -63,7 +73,7 @@ class File {
     }
   }
   
-  // fs.readdirSync(function(file), options])
+  // forEachChild(function(file), options])
   forEachChildSync(func, options) {
     const children = fs.readdirSync(this.path, options);
     for (let i = 0, len = children.length; i < len; i++) {
@@ -114,7 +124,56 @@ class File {
     return new Readl(this.path, options);
   }
 
+  // createReaddirStream(dir[, options])
+  createReaddirStream(options) {
+    return crs.createReaddirStream(this.path, options);
+  }
+
+  // readXML(function(err, parsedObject))
+  readXML(callback) {
+    fs.readFile(this.path, 'utf8', (err, data) => {
+      if (err) {
+        callback(err);
+      } else {
+        xml2js.parseString(data, { async: true }, callback); 
+      }
+    });
+  }
+
+  // readXMLSync()
+  readXMLSync() {
+    const fdata = fs.readFileSync(this.path, 'utf8');
+    let err = null;
+    let data;
+
+    xml2js.parseString(fdata, { async: false }, (aerr, adata) => {
+      err = aerr;
+      data = adata;
+    });
+
+    if (err) throw err;
+    return data;
+  }
+
+  // readLinesSync([encoding])
+  readLinesSync(encoding = 'utf8') {
+    const data = fs.readFileSync(this.path, encoding);
+    if (data.indexOf('\r\n') > -1) {
+      return data.split('\r\n');
+    } else if (data.indexOf('\n') > -1) {
+      return data.split('\n');
+    } else {
+      return [data];
+    }
+  }
+
+  readSync(encoding = 'utf8') {
+    return fs.readFileSync(this.path, encoding);
+  }
+
   // ALL CODE BELOW THIS POINT IS MACHINE-GENERATED. DO NOT MODIFY BY HAND.
+
+  // fs-extra methods
 
   copy() {
     const args = (arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments));
@@ -246,7 +305,9 @@ class File {
     args.unshift(this.path);
     return walk.walk.apply(null, args);
   }
-  
+
+  // `fs` methods
+
   // find/replace regex to apply. remember to remove fs.exists()!
   // fs\.(.*)\((.*)\r\n
   //   // fs\.\1\(\2\r\n  \1\(\) \{\r\n    var args = \(arguments.length === 1 ? \[arguments\[0]] : Array.apply\(null, arguments\)\);\r\n    args\.unshift\(this.path\);\r\n    fs\.\1\.apply\(null, args\);\r\n  \}\r\n\r\n
@@ -516,6 +577,20 @@ class File {
     const args = (arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments));
     args.unshift(this.path);
     return fs.writeFileSync.apply(null, args);
+  }
+
+  // fs.readFile(file[, options], callback)
+  readFile() {
+    const args = (arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments));
+    args.unshift(this.path);
+    return fs.readFile.apply(null, args);
+  }
+
+  // fs.readFileSync(file[, options])
+  readFileSync() {
+    const args = (arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments));
+    args.unshift(this.path);
+    return fs.readFileSync.apply(null, args);
   }
 
 }
