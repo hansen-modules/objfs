@@ -1,6 +1,6 @@
 {
   "name": "oofs",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Object-oriented extension for `fs`, heavy WIP",
   "main": "index.js",
   "scripts": {
@@ -28,5 +28,15 @@
     "readl": "0.0.8",
     "readl-async": "0.0.3",
     "rimraf": "^2.2.8"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.5.0",
+    "eslint-plugin-classes": "^0.1.1",
+    "eslint-plugin-json": "^1.2.0",
+    "eslint-plugin-lodash": "^2.1.0",
+    "eslint-plugin-node": "^2.0.0"
   }
 }
