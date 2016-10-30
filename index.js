@@ -44,7 +44,7 @@ class File {
 
   // async fs exists
   exists(callback) {
-    fs.stat('foo.txt', function(err) {
+    fs.stat(this.path, function(err) {
       if (err === null) {
         callback(true); // file exists
       } else if (err.code == 'ENOENT') {
