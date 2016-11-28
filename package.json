@@ -35,7 +35,7 @@
     "node": ">=6.0.0"
   },
   "devDependencies": {
-    "eslint": "^3.5.0",
+    "eslint": "^3.11.1",
     "eslint-plugin-classes": "^0.1.1",
     "eslint-plugin-json": "^1.2.0",
     "eslint-plugin-lodash": "^2.1.0",
