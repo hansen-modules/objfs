@@ -39,6 +39,6 @@
     "eslint-plugin-classes": "^0.1.1",
     "eslint-plugin-json": "^1.2.0",
     "eslint-plugin-lodash": "^2.1.0",
-    "eslint-plugin-node": "^3.0.4"
+    "eslint-plugin-node": "^3.0.5"
   }
 }
