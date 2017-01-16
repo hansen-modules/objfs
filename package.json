@@ -21,7 +21,7 @@
     "create-readdir-stream": "^1.0.0",
     "dive": "^0.5.0",
     "diveSync": "^0.3.0",
-    "fs-extra": "^1.0.0",
+    "fs-extra": "^2.0.0",
     "fs-vacuum": "^1.2.9",
     "jsonfile": "^2.1.0",
     "klaw": "^1.0.0",
