@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rafa1231518/oofs.git"
+    "url": "git+https://github.com/uwx/oofs.git"
   },
   "author": "chrishansen69",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rafa1231518/oofs/issues"
+    "url": "https://github.com/uwx/oofs/issues"
   },
-  "homepage": "https://github.com/rafa1231518/oofs#readme",
+  "homepage": "https://github.com/uwx/oofs#readme",
   "private": true,
   "dependencies": {
     "create-readdir-stream": "^1.0.0",
